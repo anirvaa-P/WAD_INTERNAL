@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Session Tracking</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h2>Session Tracking Demo</h2>
+
+  <!-- COOKIE SECTION -->
+  <div class="box">
+    <h3>Cookie Demo</h3>
+    <input type="text" id="username" placeholder="Enter your name">
+    <button onclick="setCookie()">Save Name (Set Cookie)</button>
+    <button onclick="getCookie()">Get My Name (Read Cookie)</button>
+    <p id="cookieResult"></p>
+  </div>
+
+  <!-- SESSION SECTION -->
+  <div class="box">
+    <h3>HTTP Session Demo</h3>
+    <input type="text" id="item" placeholder="Enter item name">
+    <button onclick="addItem()">Add Item to Session</button>
+    <button onclick="getItems()">View Session Items</button>
+    <button onclick="clearSession()">Clear Session</button>
+    <p id="sessionResult"></p>
+  </div>
+
+</body>
+<script src="script.js"></script>
+</html>

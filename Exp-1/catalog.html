@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Products</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2 style="text-align:center;">Product Catalog</h2>
+
+    <div class="grid">
+        <div class="card">
+            <h3>Shoes</h3>
+            <img src="https://redtape.com/cdn/shop/files/RSL0794A_1.jpg?v=1758879354" alt="shoes">
+            <p>₹1000</p>
+            <button onclick="addToCart('Shoes', 1000)">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <h3>Phone</h3>
+            <img src="https://darlingretail.com/cdn/shop/files/iPhone_15_Blue_Pure_Back_iPhone_15_Blue_Pure_Front_2up_Screen__WWEN_800x.jpg?v=1695103868" alt="Phone">
+            <p>₹15000</p>
+            <button onclick="addToCart('Phone', 15000)">Add to Cart</button>
+        </div>
+
+        <div class="card">
+            <h3>T-Shirt</h3>
+            <img src="https://fullyfilmy.in/cdn/shop/products/New-Mockups---no-hanger---TShirt-Believe.jpg?v=1747993165" alt="T-Shirt">
+            <p>₹500</p>
+            <button onclick="addToCart('T-Shirt', 500)">Add to Cart</button>
+        </div>
+    </div>
+
+    <div style="text-align:center; margin-top:20px;">
+        <a href="cart.html">Go to Cart</a>
+    </div>
+
+</body>
+<script src="script.js"></script>
+</html>

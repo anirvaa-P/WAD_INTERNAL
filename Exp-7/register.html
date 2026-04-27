@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: #f2f2f2;
+        }
+
+        .container {
+            width: 350px;
+            margin: 100px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px 0;
+        }
+
+        button {
+            padding: 10px;
+            width: 95%;
+            background-color: blue;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Register</h2>
+
+    <!-- 🔥 IMPORTANT: This connects to Servlet -->
+    <form action="controller" method="post">
+
+        <input type="text" name="name" placeholder="Enter Name" required>
+
+        <input type="number" name="marks" placeholder="Enter Marks" required>
+
+        <!-- 🔥 Hidden field to identify action -->
+        <input type="hidden" name="action" value="register">
+
+        <button type="submit">Register</button>
+
+    </form>
+</div>
+
+</body>
+</html>
