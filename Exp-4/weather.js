@@ -1,59 +1,84 @@
-const apiKey = "7bb2a7d67bd27cb21aef01f917d9a6a8"; // replace
-let chart;
+const apiKey = "YOUR_API_KEY";
 
-// 🔥 Arrow function + async/await
+let weatherChart;
+
 const getWeather = async () => {
+
     const city = document.getElementById("city").value;
 
-    if (!city) {
-        document.getElementById("error").innerText = "Enter city name";
+    if(city === ""){
+        alert("Please enter city name");
         return;
     }
 
-    try {
-        // 🔥 async + fetch
-        const res = await fetch(
+    try{
+
+        const response = await fetch(
             `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`
         );
 
-        const data = await res.json();
+        const data = await response.json();
 
-        // 🔥 Error handling
-        if (data.cod !== "200") {
-            document.getElementById("error").innerText = data.message;
-            return;
-        }
+        displayWeather(data);
 
-        // 🔥 map (ES6)
-        const temps = data.list.slice(0, 5).map(item => item.main.temp);
-        const labels = data.list.slice(0, 5).map(item => item.dt_txt);
-
-        showChart(labels, temps);
-        document.getElementById("error").innerText = "";
-
-    } catch (err) {
-        document.getElementById("error").innerText = "Error fetching data";
     }
+    catch(error){
+        console.log(error);
+    }
+
 };
 
-// 🔥 Arrow function
-const showChart = (labels, temps) => {
-    const ctx = document.getElementById("weatherChart").getContext("2d");
+const displayWeather = (data) => {
 
-    // destroy old chart
-    if (chart) {
-        chart.destroy();
+    document.getElementById("cityName").innerHTML =
+        data.city.name;
+
+    document.getElementById("temperature").innerHTML =
+        "Temperature : " + data.list[0].main.temp + " °C";
+
+    document.getElementById("description").innerHTML =
+        "Weather : " + data.list[0].weather[0].description;
+
+    document.getElementById("humidity").innerHTML =
+        "Humidity : " + data.list[0].main.humidity + "%";
+
+    const labels = data.list.slice(0,8).map(item =>
+        item.dt_txt
+    );
+
+    const temperatures = data.list.slice(0,8).map(item =>
+        item.main.temp
+    );
+
+    createChart(labels, temperatures);
+
+};
+
+const createChart = (labels, temperatures) => {
+
+    const ctx = document.getElementById("weatherChart");
+
+    if(weatherChart){
+        weatherChart.destroy();
     }
 
-    chart = new Chart(ctx, {
+    weatherChart = new Chart(ctx, {
         type: "line",
+
         data: {
             labels: labels,
+
             datasets: [{
-                label: "Temperature (°C)",
-                data: temps,
-                borderWidth: 2
+                label: "Temperature °C",
+                data: temperatures,
+                borderWidth: 2,
+                tension: 0.3
             }]
+        },
+
+        options: {
+            responsive: true
         }
     });
+
 };
